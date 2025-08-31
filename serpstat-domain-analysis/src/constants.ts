@@ -2,99 +2,50 @@
  * Serpstat Domain Analysis API Constants
  * ======================================
  *
- * Centralized constants for search engine codes, API configuration,
- * and other shared values used across all domain analysis methods.
+ * Domain-specific constants extending the shared library
+ *
+ * Author: Benjamin Oldenburg
+ * Date: 2025-08-31
+ *
+ * This module defines all constants specific to the Serpstat Domain Analysis MCP server.
+ * It includes API method names that map to the Serpstat Domain Analysis API procedures,
+ * and re-exports shared constants from the serpstat-shared library for convenience.
+ *
+ * The API_METHODS object provides a mapping between the tool names used in the MCP
+ * server and the corresponding procedure names in the Serpstat API. This mapping
+ * ensures consistent communication with the Serpstat API endpoints.
+ *
+ * @module serpstat-domain-analysis
+ * @requires serpstat-shared
  */
 
-/**
- * Search Engine Codes
- * Complete list of all supported search engines for Serpstat API
- * Based on official documentation: Google country variants + Bing US
- */
-export const SEARCH_ENGINES = [
-  // Google country variants (200+ variants)
-  "g_af", "g_al", "g_dz", "g_as", "g_ad", "g_ao", "g_ai", "g_ag", "g_ar", "g_am",
-  "g_aw", "g_au", "g_at", "g_az", "g_bh", "g_bd", "g_bb", "g_by", "g_be", "g_bz",
-  "g_bj", "g_bm", "g_bt", "g_bo", "g_ba", "g_bw", "g_br", "g_io", "g_vg", "g_bn",
-  "g_bg", "g_bf", "g_bi", "g_kh", "g_cm", "g_ca", "g_cv", "g_ky", "g_cf", "g_td",
-  "g_cl", "g_cn", "g_cx", "g_cc", "g_co", "g_km", "g_ck", "g_cr", "g_ci", "g_hr",
-  "g_cw", "g_cy", "g_cz", "g_cd", "g_dk", "g_dj", "g_dm", "g_do", "g_ec", "g_eg",
-  "g_sv", "g_gq", "g_er", "g_ee", "g_et", "g_fk", "g_fo", "g_fm", "g_fj", "g_fi",
-  "g_fr", "g_gf", "g_pf", "g_ga", "g_ge", "g_de", "g_gh", "g_gi", "g_gr", "g_gl",
-  "g_gd", "g_gp", "g_gu", "g_gt", "g_gg", "g_gn", "g_gw", "g_gy", "g_ht", "g_hn",
-  "g_hk", "g_hu", "g_is", "g_in", "g_id", "g_iq", "g_ie", "g_im", "g_il", "g_it",
-  "g_jm", "g_jp", "g_je", "g_jo", "g_kz", "g_ke", "g_ki", "g_kw", "g_kg", "g_la",
-  "g_lv", "g_lb", "g_ls", "g_lr", "g_ly", "g_li", "g_lt", "g_lu", "g_mo", "g_mk",
-  "g_mg", "g_mw", "g_my", "g_mv", "g_ml", "g_mt", "g_mh", "g_mq", "g_mr", "g_mu",
-  "g_yt", "g_mx", "g_md", "g_mc", "g_mn", "g_me", "g_ms", "g_ma", "g_mz", "g_mm",
-  "g_na", "g_nr", "g_np", "g_nl", "g_nc", "g_nz", "g_ni", "g_ne", "g_ng", "g_nu",
-  "g_nf", "g_mp", "g_no", "g_om", "g_pk", "g_pw", "g_ps", "g_pa", "g_pg", "g_py",
-  "g_pe", "g_ph", "g_pn", "g_pl", "g_pt", "g_pr", "g_qa", "g_cg", "g_re", "g_ro",
-  "g_ru", "g_rw", "g_sh", "g_kn", "g_lc", "g_pm", "g_vc", "g_ws", "g_sm", "g_st",
-  "g_sa", "g_sn", "g_rs", "g_sc", "g_sl", "g_sg", "g_sx", "g_sk", "g_si", "g_sb",
-  "g_so", "g_za", "g_kr", "g_es", "g_lk", "g_sr", "g_sz", "g_se", "g_ch", "g_tw",
-  "g_tj", "g_tz", "g_th", "g_bs", "g_gm", "g_tl", "g_tg", "g_tk", "g_to", "g_tt",
-  "g_tn", "g_tr", "g_tm", "g_tc", "g_tv", "g_vi", "g_ug", "g_ua", "g_ae", "g_uk",
-  "g_us", "g_uy", "g_uz", "g_vu", "g_va", "g_ve", "g_vn", "g_wf", "g_ye", "g_zm",
-  "g_zw",
-  // Bing variants (currently only US is supported)
-  "bing_us"
-] as const;
+import {
+  SORT_ORDERS,
+  PAGINATION_DEFAULTS
+} from 'serpstat-shared';
 
 /**
- * API Configuration
- */
-export const API_CONFIG = {
-  baseURL: "https://api.serpstat.com/v4",
-  timeout: 120000, // Increased to 2 minutes for complex operations like domain intersection
-  maxRetries: 3,
-  retryDelay: 1000
-} as const;
-
-/**
- * Default Pagination Values
- */
-export const PAGINATION_DEFAULTS = {
-  page: 1,
-  size: 100,
-  maxSize: 1000,
-  minSize: 1
-} as const;
-
-/**
- * Export Configuration
- */
-export const EXPORT_CONFIG = {
-  maxExportSize: 60000,
-  defaultExportSize: 1000
-} as const;
-
-/**
- * Sort Order Options
- */
-export const SORT_ORDERS = ["asc", "desc"] as const;
-
-/**
- * Sort Field Options for different methods
- */
-export const SORT_FIELDS = {
-  regions: ["traff", "region", "country_name_en", "google_domain"] as const,
-  domains: ["relevance", "common", "not_intersected", "missing"] as const,
-  urls: ["organic_keywords", "facebook_shares", "potencial_traff"] as const,
-  history: ["date", "keywords", "traff", "visible"] as const
-} as const;
-
-/**
- * Credit Information
- */
-export const CREDIT_INFO = {
-  domainsInfo: 5,
-  perResult: 1,
-  exportPerRow: 1
-} as const;
-
-/**
- * API Method Names
+ * API Method Names - Map MCP tool names to Serpstat API procedure names
+ *
+ * These constants define the mapping between the tool names exposed through the
+ * MCP server and the corresponding procedure names in the Serpstat Domain Analysis API.
+ * The naming convention follows "SerpstatDomainProcedure.{methodName}" format.
+ *
+ * Available methods:
+ * - getDomainsInfo: Retrieves basic domain information including keyword count and visibility
+ * - getDomainKeywords: Gets keywords that a domain ranks for in search results
+ * - getAdKeywords: Retrieves advertising keywords for paid search analysis
+ * - getCompetitors: Gets competitor domains (deprecated but still available)
+ * - getAdsCompetitors: Gets paid search competitors
+ * - getOrganicCompetitorsPage: Gets organic search competitors
+ * - getTopUrls: Gets top-performing URLs for a domain
+ * - getDomainUrls: Gets URLs associated with a domain and their keyword information
+ * - getDomainsHistory: Gets historical data for domain analysis over time
+ * - getDomainsIntersection: Finds common keywords between multiple domains
+ * - getDomainsUniqKeywords: Gets unique keywords across multiple domains
+ * - getAllRegionsTraffic: Gets traffic data for all regions for a domain
+ * - getRegionsCount: Gets database/region statistics for domains
+ * - exportPositions: Exports position data to CSV format
  */
 export const API_METHODS = {
   getDomainsInfo: "SerpstatDomainProcedure.getDomainsInfo",
@@ -112,3 +63,6 @@ export const API_METHODS = {
   getRegionsCount: "SerpstatDomainProcedure.getRegionsCount",
   exportPositions: "SerpstatDomainProcedure.exportPositions"
 } as const;
+
+// Re-export shared constants for convenience
+export { SORT_ORDERS, PAGINATION_DEFAULTS };

@@ -19,7 +19,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.6.0",
     "axios": "^1.11.0",
-    "zod": "^4.1.5"
+    "zod": "^4.1.5",
+    "serpstat-shared": "file:../serpstat-shared"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

@@ -4,6 +4,33 @@
  *
  * Main server entry point that initializes and configures the MCP server
  * with all domain analysis tools and procedures.
+ *
+ * Author: Benjamin Oldenburg
+ * Date: 2025-08-31
+ *
+ * This module implements the core MCP server for Serpstat Domain Analysis API integration.
+ * It provides a comprehensive interface to 14 different domain analysis methods through
+ * the Model Context Protocol (MCP) framework.
+ *
+ * The server initializes with MCP server capabilities and registers various tools for
+ * domain analysis, including domain information retrieval, keyword analysis, competitor
+ * analysis, and data export functionality. All API calls are routed through a shared
+ * Serpstat API client with built-in error handling and retry logic.
+ *
+ * Key Features:
+ * - 14 domain analysis tools with comprehensive validation
+ * - Robust error handling with detailed error messages
+ * - Automatic API client initialization with environment variable validation
+ * - Comprehensive input validation using Zod schemas
+ * - Support for multiple search engines and advanced filtering
+ * - Pagination support for large datasets
+ * - CSV export capabilities for position data
+ *
+ * @module serpstat-domain-analysis
+ * @requires @modelcontextprotocol/sdk/server
+ * @requires serpstat-shared
+ * @requires ./utils/validation
+ * @requires ./constants
  */
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -13,7 +40,10 @@ import {
   ListToolsRequestSchema,
   Tool
 } from '@modelcontextprotocol/sdk/types.js';
-import { createSerpstatClient } from './utils/api-client.js';
+import {
+  SerpstatApiClient,
+  makeSerpstatRequest
+} from 'serpstat-shared';
 import {
   GetDomainsInfoSchema,
   GetDomainKeywordsSchema,
@@ -30,7 +60,7 @@ import {
   GetRegionsCountSchema,
   ExportPositionsSchema
 } from './utils/validation.js';
-import { API_METHODS, SEARCH_ENGINES } from './constants.js';
+import { API_METHODS } from './constants.js';
 import { z } from 'zod';
 
 // Initialize MCP Server
@@ -48,17 +78,24 @@ export const server: Server = new Server(
 );
 
 // Global variables
-let serpstatClient: ReturnType<typeof createSerpstatClient> | null = null;
+let serpstatClient: SerpstatApiClient | null = null;
 
 /**
  * Initialize the Serpstat API client
+ *
+ * This function initializes the Serpstat API client using the API key from
+ * environment variables. It validates that the API key is present and
+ * creates a new API client instance with default configuration.
+ *
+ * @throws {Error} If SERPSTAT_API_KEY environment variable is not set
+ * @returns {void}
  */
-function initializeSerpstatClient() {
+function initializeSerpstatClient(): void {
   const apiKey = process.env.SERPSTAT_API_KEY;
   if (!apiKey) {
     throw new Error('SERPSTAT_API_KEY environment variable is required');
   }
-  serpstatClient = createSerpstatClient(apiKey);
+  serpstatClient = new SerpstatApiClient({ apiKey });
 }
 
 /**
@@ -550,6 +587,17 @@ const TOOLS: Tool[] = [
 
 /**
  * Handle tool requests
+ *
+ * This function handles MCP tool requests by registering two main request handlers:
+ * 1. ListToolsRequestSchema - Returns the list of available tools
+ * 2. CallToolRequestSchema - Executes the requested tool with given arguments
+ *
+ * The handlers provide comprehensive error handling, argument validation using Zod schemas,
+ * and proper response formatting. Each tool call is validated against its corresponding
+ * schema before execution, and errors are formatted with detailed error messages.
+ *
+ * @param {ListToolsRequestSchema} request - The list tools request
+ * @returns {Promise<{tools: Tool[]}>} - Promise resolving to available tools
  */
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
@@ -557,6 +605,34 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   };
 });
 
+/**
+ * Handle MCP tool calls with comprehensive error handling and validation
+ *
+ * This function serves as the central dispatcher for all tool requests in the
+ * Serpstat Domain Analysis MCP server. It processes incoming tool requests,
+ * validates arguments against Zod schemas, routes to the appropriate tool
+ * implementation, and returns formatted responses with proper error handling.
+ *
+ * The handler supports all 14 domain analysis tools with the following workflow:
+ * 1. Initialize Serpstat API client if not already initialized
+ * 2. Validate that tool arguments are provided
+ * 3. Route to the appropriate tool implementation based on tool name
+ * 4. Validate arguments against the corresponding Zod schema
+ * 5. Execute the tool via the shared library
+ * 6. Format and return the response
+ * 7. Handle CSV response format specifically for exportPositions
+ *
+ * Error handling includes:
+ * - Missing API client initialization
+ * - Missing tool arguments
+ * - Unknown tool names
+ * - Zod validation errors with detailed error messages
+ * - API execution errors with proper logging
+ *
+ * @param {CallToolRequestSchema} request - The MCP tool request containing tool name and arguments
+ * @returns {Promise<{content: Array<{type: string, text: string}>, isError?: boolean}>} - Formatted response tool call results or error information
+ * @throws {Error} - If tool arguments are missing or tool execution fails
+ */
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
@@ -655,6 +731,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'exportPositions': {
         const validatedArgs = ExportPositionsSchema.parse(args);
         result = await exportPositions(validatedArgs);
+        // Handle CSV response format for exportPositions
+        if (result && result.success && typeof result.data === 'string') {
+          result.data = result.data; // CSV data remains as string
+        }
         break;
       }
 
@@ -694,108 +774,133 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 /**
- * Tool implementations (to be implemented in separate files)
+ * Tool implementations using shared library
+ *
+ * This section contains the implementation functions for all 14 domain analysis tools.
+ * Each function follows a consistent pattern:
+ * 1. Check if the Serpstat API client is initialized
+ * 2. Call the shared makeSerpstatRequest function with the appropriate method and arguments
+ * 3. Return the response from the API
+ *
+ * These functions serve as thin wrappers around the shared library, providing type safety
+ * and consistent error handling across all tools. The actual API communication logic
+ * is handled by the shared serpstat-shared library.
+ *
+ * @module serpstat-domain-analysis
+ * @requires serpstat-shared
  */
 async function getDomainsInfo(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainsInfo, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainsInfo, args);
   return response;
 }
 
 async function getDomainKeywords(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainKeywords, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainKeywords, args);
   return response;
 }
 
 async function getAdKeywords(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getAdKeywords, args);
+  const response = await makeSerpstatRequest(API_METHODS.getAdKeywords, args);
   return response;
 }
 
 async function getCompetitors(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getCompetitors, args);
+  const response = await makeSerpstatRequest(API_METHODS.getCompetitors, args);
   return response;
 }
 
 async function getAdsCompetitors(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getAdsCompetitors, args);
+  const response = await makeSerpstatRequest(API_METHODS.getAdsCompetitors, args);
   return response;
 }
 
 async function getOrganicCompetitorsPage(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getOrganicCompetitorsPage, args);
+  const response = await makeSerpstatRequest(API_METHODS.getOrganicCompetitorsPage, args);
   return response;
 }
 
 async function getTopUrls(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getTopUrls, args);
+  const response = await makeSerpstatRequest(API_METHODS.getTopUrls, args);
   return response;
 }
 
 async function getDomainUrls(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainUrls, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainUrls, args);
   return response;
 }
 
 async function getDomainsHistory(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainsHistory, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainsHistory, args);
   return response;
 }
 
 async function getDomainsIntersection(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainsIntersection, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainsIntersection, args);
   return response;
 }
 
 async function getDomainsUniqKeywords(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getDomainsUniqKeywords, args);
+  const response = await makeSerpstatRequest(API_METHODS.getDomainsUniqKeywords, args);
   return response;
 }
 
 async function getAllRegionsTraffic(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getAllRegionsTraffic, args);
+  const response = await makeSerpstatRequest(API_METHODS.getAllRegionsTraffic, args);
   return response;
 }
 
 async function getRegionsCount(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.getRegionsCount, args);
+  const response = await makeSerpstatRequest(API_METHODS.getRegionsCount, args);
   return response;
 }
 
 async function exportPositions(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
   
-  const response = await serpstatClient.callMethod(API_METHODS.exportPositions, args);
+  const response = await makeSerpstatRequest(API_METHODS.exportPositions, args);
   return response;
 }
 
 /**
  * Start the server
+ *
+ * This function initializes and starts the MCP server using stdio transport.
+ * It creates a new StdioServerTransport for communication via standard input/output
+ * and connects the server to the transport. The server then begins listening
+ * for MCP requests on the stdio interface.
+ *
+ * The function uses console.error for logging to ensure compatibility with
+ * MCP stdio communication patterns, where console.error is used for
+ * server-level logging that won't interfere with the JSON-RPC protocol.
+ *
+ * @returns {Promise<void>} - Promise that resolves when the server is started
+ * @throws {Error} - If server connection fails
  */
 async function main() {
   const transport = new StdioServerTransport();

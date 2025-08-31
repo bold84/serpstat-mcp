@@ -18,7 +18,7 @@ const buildOptions = {
   format: 'esm',
   sourcemap: isProduction ? false : 'inline',
   minify: isProduction,
-  external: ['@modelcontextprotocol/sdk', 'axios'],
+  external: ['@modelcontextprotocol/sdk', 'axios', 'serpstat-shared'],
   define: {
     'process.env.NODE_ENV': isProduction ? '"production"' : '"development"'
   },
@@ -34,11 +34,11 @@ build({
   outfile: 'build/index.js'
 }).catch(() => process.exit(1));
 
-// Build API client and utils
+// Build validation utils
 build({
   ...buildOptions,
-  entryPoints: [resolve('src/utils/api-client.ts')],
-  outfile: 'build/utils/api-client.js'
+  entryPoints: [resolve('src/utils/validation.ts')],
+  outfile: 'build/utils/validation.js'
 }).catch(() => process.exit(1));
 
 build({
