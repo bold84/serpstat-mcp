@@ -1,0 +1,41 @@
+{
+  "name": "serpstat-audit",
+  "version": "0.1.0",
+  "description": "MCP server for Serpstat Site Audit API - Complete technical SEO analysis and website health monitoring",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "dev": "tsx watch src/index.ts",
+    "start": "node build/index.js",
+    "test": "npm run build && node build/index.js",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf build/"
+  },
+  "keywords": [
+    "serpstat",
+    "mcp",
+    "seo",
+    "audit",
+    "technical-seo",
+    "website-health",
+    "site-audit"
+  ],
+  "author": "Benjamin Oldenburg",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "axios": "^1.7.4",
+    "serpstat-shared": "file:../serpstat-shared",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

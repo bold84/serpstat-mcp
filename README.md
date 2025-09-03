@@ -181,6 +181,43 @@ Configure in MCP settings:
 }
 ```
 
+### serpstat-audit
+MCP server for Serpstat site audit with 15 different analysis methods.
+
+**Features:**
+- Automated website scanning and audit management
+- Technical SEO error detection and categorization
+- Comprehensive audit reporting and export capabilities
+- Advanced audit configuration and scheduling
+- Historical data tracking and analysis
+- Error priority management (high, medium, low, information)
+- Multi-format export (CSV, XLSX, JSON)
+- Audit project management and monitoring
+
+**Installation:**
+```bash
+cd serpstat-audit
+npm install
+npm run build
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-audit": {
+      "command": "node",
+      "args": ["/path/to/serpstat-audit/build/index.js"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+  }
+}
+```
+
 ### serpstat-shared
 Shared library providing common functionality for all MCP servers.
 
