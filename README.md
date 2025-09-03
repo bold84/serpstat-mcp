@@ -4,6 +4,42 @@ A collection of Model Context Protocol (MCP) servers for interacting with the Se
 
 ## Projects
 
+### serpstat-keyword-analysis
+MCP server for Serpstat keyword analysis with 12 different analysis methods.
+
+**Features:**
+- Keyword research and suggestions
+- Competitor analysis for keywords
+- Search volume and CPC data
+- Keyword difficulty and intent analysis
+- Related keywords discovery
+- Ad keywords and competitor analysis
+- Data export capabilities
+
+**Installation:**
+```bash
+cd serpstat-keyword-analysis
+npm install
+npm run build
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-keyword-analysis": {
+      "command": "node",
+      "args": ["/path/to/serpstat-keyword-analysis/build/index.js"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+  }
+}
+```
+
 ### serpstat-domain-analysis
 MCP server for Serpstat domain analysis with 15 different analysis methods.
 
@@ -72,7 +108,7 @@ Configure in MCP settings:
 ```
 
 ### serpstat-shared
-Shared library providing common functionality for both MCP servers.
+Shared library providing common functionality for all MCP servers.
 
 **Features:**
 - HTTP client with retry logic and error handling
