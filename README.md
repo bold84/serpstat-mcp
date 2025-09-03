@@ -141,6 +141,46 @@ Configure in MCP settings:
 }
 ```
 
+### serpstat-backlinks
+MCP server for Serpstat backlinks analysis with 21 different analysis methods.
+
+**Features:**
+- Referring domains analysis with domain rank and authority metrics
+- New and lost backlinks tracking
+- Anchor text analysis and optimization insights
+- External link analysis and outlink tracking
+- Competitor backlink intersection analysis
+- Domain redirection analysis
+- Domain Rating (SDR) and TLD distribution analysis
+- Threat detection and malicious domain analysis
+- Historical backlink changes tracking
+- Complex filtering with AND/OR logic
+- Advanced sorting and pagination (up to 1000 results per page)
+
+**Installation:**
+```bash
+cd serpstat-backlinks
+npm install
+npm run build
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-backlinks": {
+      "command": "node",
+      "args": ["/path/to/serpstat-backlinks/build/index.js"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+  }
+}
+```
+
 ### serpstat-shared
 Shared library providing common functionality for all MCP servers.
 
