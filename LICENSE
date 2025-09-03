@@ -1,0 +1,58 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 Bold84
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+Commons Clause License Condition v1.0
+
+The Software is provided to you by the Licensor under the License,
+as defined below, subject to the following condition.
+
+Without limiting other conditions in the License, the grant of rights
+under the License will not include, and the License does not grant to
+you, the right to Sell the Software.
+
+For purposes of the foregoing, "Sell" means practicing any or all of
+the rights granted to you under the License to provide to third parties,
+for a fee or other consideration (including without limitation fees for
+hosting or consulting/ support services related to the Software), a
+product or service whose value derives, entirely or substantially, from
+the functionality of the Software. Any license notice or attribution
+required by the License must also include this Commons Clause License
+Condition notice.
+
+---
+
+ADDITIONAL NOTICES:
+
+This software is an MCP (Model Context Protocol) server implementation
+for the Serpstat API. The author is not affiliated with Serpstat.
+
+Commercial Use by Serpstat:
+If you are Serpstat or an affiliate of Serpstat and wish to use this software
+for commercial purposes without the restrictions of the Commons Clause,
+please contact the author to obtain a separate commercial license.
+
+For all other users:
+This software is free to use, modify, and distribute under the terms of
+the GNU General Public License v3, with the Commons Clause restriction that
+you cannot Sell the software without obtaining a separate commercial license.
+
+Author Contact:
+For commercial licensing inquiries, please contact the author through
+the project repository or other designated contact methods.
