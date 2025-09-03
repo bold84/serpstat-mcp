@@ -1,0 +1,32 @@
+{
+  "name": "serpstat-url-analysis",
+  "version": "0.1.0",
+  "description": "A comprehensive Model Context Protocol server for Serpstat URL Analysis API",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "serpstat-url-analysis": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "build:ts": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "dev": "node esbuild.config.js --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "0.6.0",
+    "axios": "^1.11.0",
+    "serpstat-shared": "file:../serpstat-shared/serpstat-shared-1.0.0.tgz",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  }
+}

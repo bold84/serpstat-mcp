@@ -107,6 +107,40 @@ Configure in MCP settings:
 }
 ```
 
+### serpstat-url-analysis
+MCP server for Serpstat URL analysis with 4 different analysis methods.
+
+**Features:**
+- URL traffic and keyword statistics
+- URL competitor analysis
+- URL keyword ranking analysis
+- Missing keyword analysis for SEO gap identification
+- Advanced filtering and pagination support
+
+**Installation:**
+```bash
+cd serpstat-url-analysis
+npm install
+npm run build
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-url-analysis": {
+      "command": "node",
+      "args": ["/path/to/serpstat-url-analysis/build/index.js"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+  }
+}
+```
+
 ### serpstat-shared
 Shared library providing common functionality for all MCP servers.
 
@@ -142,4 +176,4 @@ npm run build
 All projects use TypeScript and have been documented with comprehensive JSDoc comments.
 
 Author: Benjamin Oldenburg
-Date: 2025-08-31
+Date: 2025-09-03
