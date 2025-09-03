@@ -2,6 +2,8 @@
 
 A collection of Model Context Protocol (MCP) servers for interacting with the Serpstat API.
 
+**Available Servers:** 7 MCP servers with 75+ total analysis methods
+
 ## Projects
 
 ### serpstat-keyword-analysis
@@ -217,6 +219,43 @@ Configure in MCP settings:
   }
 }
 ```
+
+### serpstat-rank-tracker
+MCP server for Serpstat rank tracking with 6 different analysis methods.
+
+**Features:**
+- Project management and status monitoring
+- Keyword ranking history and SERP analysis
+- URL-specific ranking tracking
+- Competitor domain analysis in top-20 positions
+- Regional ranking data with comprehensive filtering
+- Historical ranking trend analysis
+- No API credits consumed for any operations
+
+**Installation:**
+```bash
+cd serpstat-rank-tracker
+npm install
+npm run build
+export SERPSTAT_TOKEN="your-api-token"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-rank-tracker": {
+      "command": "node",
+      "args": ["/path/to/serpstat-rank-tracker/build/index.js"],
+      "env": {
+        "SERPSTAT_TOKEN": "your-serpstat-api-token"
+      }
+    }
+  }
+}
+```
+
 
 ### serpstat-shared
 Shared library providing common functionality for all MCP servers.
