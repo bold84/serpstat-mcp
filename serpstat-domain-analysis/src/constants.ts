@@ -35,7 +35,6 @@ import {
  * - getDomainsInfo: Retrieves basic domain information including keyword count and visibility
  * - getDomainKeywords: Gets keywords that a domain ranks for in search results
  * - getAdKeywords: Retrieves advertising keywords for paid search analysis
- * - getCompetitors: Gets competitor domains (deprecated but still available)
  * - getAdsCompetitors: Gets paid search competitors
  * - getOrganicCompetitorsPage: Gets organic search competitors
  * - getTopUrls: Gets top-performing URLs for a domain
@@ -51,7 +50,6 @@ export const API_METHODS = {
   getDomainsInfo: "SerpstatDomainProcedure.getDomainsInfo",
   getDomainKeywords: "SerpstatDomainProcedure.getDomainKeywords",
   getAdKeywords: "SerpstatDomainProcedure.getAdKeywords",
-  getCompetitors: "SerpstatDomainProcedure.getCompetitors",
   getAdsCompetitors: "SerpstatDomainProcedure.getAdsCompetitors",
   getOrganicCompetitorsPage: "SerpstatDomainProcedure.getOrganicCompetitorsPage",
   getTopUrls: "SerpstatDomainProcedure.getTopUrls",

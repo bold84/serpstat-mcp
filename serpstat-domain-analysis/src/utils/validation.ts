@@ -98,23 +98,6 @@ export const GetAdKeywordsSchema = z.object({
 
 export type GetAdKeywordsParams = z.infer<typeof GetAdKeywordsSchema>;
 
-// getCompetitors Schema (deprecated but still documented)
-// Validates parameters for competitor analysis (deprecated method but still available)
-export const GetCompetitorsSchema = z.object({
-  domain: z.string().min(1, "Domain name is required").max(100, "Domain name too long"),
-  se: SearchEngineSchema,
-  withSubdomains: z.boolean().optional(),
-  withIntents: z.boolean().optional(),
-  url: z.string().url("Invalid URL format").optional(),
-  keywords: z.array(z.string()).optional(),
-  minusKeywords: z.array(z.string()).optional(),
-  filters: z.object({}).optional(),
-  sort: z.object({}).optional(),
-  page: z.number().int().min(1, "Page must be at least 1").default(PAGINATION_DEFAULTS.page),
-  size: z.number().int().min(1, "Size must be at least 1").max(1000, "Maximum 1000 results per page").default(PAGINATION_DEFAULTS.size),
-});
-
-export type GetCompetitorsParams = z.infer<typeof GetCompetitorsSchema>;
 
 // getAdsCompetitors Schema
 // Validates parameters for paid search competitor analysis

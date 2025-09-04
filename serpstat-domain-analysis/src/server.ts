@@ -236,36 +236,6 @@ const TOOLS: Tool[] = [
     },
   },
   {
-    name: 'getCompetitors',
-    description: '⚠️ DEPRECATED - Returns the list of domain competitors in top 20 Google search results. Similar to the Competitors report of the domain. Note: This method is deprecated from 2023-03-01.',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        domain: {
-          type: 'string',
-          description: 'Domain name to get competitors for'
-        },
-        se: {
-          type: 'string',
-          description: 'Search engine code (e.g., "g_us" for Google US). Refer to full list of search engines.'
-        },
-        filters: {
-          type: 'object',
-          description: 'Filters for search. Fields are combined using AND logic. Numeric range fields (_from and _to) allow specifying minimum and maximum values. List fields (_contain and _not_contain) specify inclusion or exclusion criteria.'
-        },
-        sort: {
-          type: 'object',
-          description: 'Optional. With this sorting options, you can sort by one of response parameters. Default sorting is "relevance":"desc"'
-        },
-        size: {
-          type: 'number',
-          description: 'Size of report, by default - 100, you can specify lower value - 5 (Min: 1, Max: 1000)'
-        }
-      },
-      required: ['domain', 'se']
-    },
-  },
-  {
     name: 'getAdsCompetitors',
     description: 'Returns a list of competing domains in paid search results. Similar to the "Competitors" report in domain PPC analysis in Serpstat UI. Provides information about ad keywords, intersections, and missing keywords.',
     inputSchema: {
@@ -668,11 +638,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         break;
       }
 
-      case 'getCompetitors': {
-        const validatedArgs = GetCompetitorsSchema.parse(args);
-        result = await getCompetitors(validatedArgs);
-        break;
-      }
 
       case 'getAdsCompetitors': {
         const validatedArgs = GetAdsCompetitorsSchema.parse(args);
@@ -810,12 +775,6 @@ async function getAdKeywords(args: any): Promise<any> {
   return response;
 }
 
-async function getCompetitors(args: any): Promise<any> {
-  if (!serpstatClient) throw new Error('Serpstat client not initialized');
-  
-  const response = await makeSerpstatRequest(API_METHODS.getCompetitors, args);
-  return response;
-}
 
 async function getAdsCompetitors(args: any): Promise<any> {
   if (!serpstatClient) throw new Error('Serpstat client not initialized');
