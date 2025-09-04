@@ -238,11 +238,15 @@ export class SerpstatApiClient {
       const requestId = Date.now().toString();
       const url = `${this.config.baseURL}/?token=${this.config.apiKey}#${methodName}`;
       
-      const requestBody = {
+      // Only include params field if there are actual parameters
+      const requestBody: any = {
         id: requestId,
         method: methodName,
-        params: methodParams
       };
+      
+      if (Object.keys(methodParams).length > 0) {
+        requestBody.params = methodParams;
+      }
 
       const response: AxiosResponse<T> = await this.client.post(url, requestBody);
       
@@ -449,8 +453,12 @@ export class SerpstatApiClient {
  * });
  * ```
  */
-export function createSerpstatClient(apiKey: string): SerpstatApiClient {
-  return new SerpstatApiClient({ apiKey });
+export function createSerpstatClient(apiKey: string, baseURL?: string): SerpstatApiClient {
+  const config: ApiClientConfig = { apiKey };
+  if (baseURL) {
+    config.baseURL = baseURL;
+  }
+  return new SerpstatApiClient(config);
 }
 
 /**

@@ -2,9 +2,55 @@
 
 A collection of Model Context Protocol (MCP) servers for interacting with the Serpstat API.
 
-**Available Servers:** 8 MCP servers with 78+ total analysis methods
+**Available Servers:** 9 MCP servers with 84+ total analysis methods
 
 ## Projects
+
+### serpstat-crawling
+MCP server for Serpstat SERP crawling with 6 different crawling methods.
+
+**Features:**
+- SERP crawling for regular and local results
+- AI Overview support (becomes separate paid parameter Aug 1, 2025)
+- Task management and progress tracking
+- Raw HTML SERP retrieval
+- Account balance monitoring
+- Batch keyword processing capabilities
+- Separate billing system (credits must be purchased separately)
+
+**Installation:**
+```bash
+cd serpstat-crawling
+npm install
+npm run build
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-crawling": {
+      "command": "node",
+      "args": ["/path/to/serpstat-crawling/build/index.js"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+  }
+}
+```
+
+**Available Tools:**
+- `addTask` - Add single keyword task (consumes crawling credits)
+- `addKeywordList` - Add multiple keywords as array (consumes crawling credits)
+- `getList` - Get task list for last 7 days (free)
+- `getParsingBalance` - Check account balance (free)
+- `getTaskResult` - Get SERP results with AI overview (free)
+- `getKeywordSerp` - Get raw HTML SERP (free)
+
+**Note:** This API uses separate billing and credits must be purchased separately from other Serpstat APIs, but uses the same SERPSTAT_API_KEY environment variable for authentication.
 
 ### serpstat-keyword-analysis
 MCP server for Serpstat keyword analysis with 12 different analysis methods.
@@ -92,7 +138,7 @@ MCP server for Serpstat project management with 3 different project operations.
 cd serpstat-project-management
 npm install
 npm run build
-export SERPSTAT_TOKEN="your-api-token"
+export SERPSTAT_API_KEY="your-api-key"
 ```
 
 **Usage:**
@@ -104,7 +150,7 @@ Configure in MCP settings:
       "command": "node",
       "args": ["/path/to/serpstat-project-management/build/index.js"],
       "env": {
-        "SERPSTAT_TOKEN": "your-serpstat-api-token"
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
     }
   }
@@ -279,7 +325,7 @@ MCP server for Serpstat rank tracking with 6 different analysis methods.
 cd serpstat-rank-tracker
 npm install
 npm run build
-export SERPSTAT_TOKEN="your-api-token"
+export SERPSTAT_API_KEY="your-api-key"
 ```
 
 **Usage:**
@@ -291,7 +337,7 @@ Configure in MCP settings:
       "command": "node",
       "args": ["/path/to/serpstat-rank-tracker/build/index.js"],
       "env": {
-        "SERPSTAT_TOKEN": "your-serpstat-api-token"
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
     }
   }
@@ -334,4 +380,4 @@ npm run build
 All projects use TypeScript and have been documented with comprehensive JSDoc comments.
 
 Author: Benjamin Oldenburg
-Date: 2025-09-03
+Date: 2025-09-04
