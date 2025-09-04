@@ -2,7 +2,7 @@
 
 A collection of Model Context Protocol (MCP) servers for interacting with the Serpstat API.
 
-**Available Servers:** 7 MCP servers with 75+ total analysis methods
+**Available Servers:** 8 MCP servers with 78+ total analysis methods
 
 ## Projects
 
@@ -75,6 +75,48 @@ Configure in MCP settings:
   }
 }
 ```
+
+### serpstat-project-management
+MCP server for Serpstat project management with 3 different project operations.
+
+**Features:**
+- Create new SEO projects with domain and configuration settings
+- Delete existing projects and all associated data
+- List and manage all projects with detailed metadata
+- Project group organization and type management
+- Pagination support for large project lists
+- Credit consumption tracking for project operations
+
+**Installation:**
+```bash
+cd serpstat-project-management
+npm install
+npm run build
+export SERPSTAT_TOKEN="your-api-token"
+```
+
+**Usage:**
+Configure in MCP settings:
+```json
+{
+  "mcpServers": {
+    "serpstat-project-management": {
+      "command": "node",
+      "args": ["/path/to/serpstat-project-management/build/index.js"],
+      "env": {
+        "SERPSTAT_TOKEN": "your-serpstat-api-token"
+      }
+    }
+  }
+}
+```
+
+**Available Tools:**
+- `createProject` - Create new Serpstat projects (1 project credit)
+- `deleteProject` - Remove existing projects permanently (1 project credit)
+- `getProjects` - List all projects with metadata (no credit cost)
+
+**Note:** The createProject tool uses `name` parameter (not `projectName`) as required by the actual API.
 
 ### serpstat-team-management
 MCP server for managing Serpstat team members.

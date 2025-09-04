@@ -1,0 +1,36 @@
+{
+  "name": "serpstat-project-management",
+  "version": "0.1.0",
+  "description": "Serpstat Project Management API MCP Server",
+  "main": "build/index.js",
+  "bin": {
+    "serpstat-project-management": "build/index.js"
+  },
+  "scripts": {
+    "build": "node -r esbuild-register esbuild.config.js",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "serpstat",
+    "project-management",
+    "seo",
+    "mcp",
+    "api"
+  ],
+  "author": "Benjamin Oldenburg",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9",
+    "serpstat-shared": "file:../serpstat-shared",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "esbuild": "^0.24.2",
+    "esbuild-node-externals": "^1.18.0",
+    "esbuild-register": "^3.6.0",
+    "typescript": "^5.7.3"
+  }
+}
