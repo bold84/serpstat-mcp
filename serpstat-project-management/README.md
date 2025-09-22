@@ -13,9 +13,14 @@ This MCP server provides 3 tools for project lifecycle management:
 
 ## Installation
 
-```bash
-npm install
-```
+# No installation required! Run directly with npx:
+npx serpstat-project-management
+
+# Or install globally if preferred:
+npm install -g serpstat-project-management
+
+# Set your API key:
+export SERPSTAT_TOKEN="your-api-token"
 
 ## Usage
 

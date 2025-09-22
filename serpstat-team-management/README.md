@@ -4,20 +4,14 @@ A Model Context Protocol (MCP) server for managing Serpstat team members.
 
 ## Installation
 
-1. Install dependencies:
-```bash
-npm install
-```
+# No installation required! Run directly with npx:
+npx serpstat-team-management
 
-2. Build the server:
-```bash
-npm run build
-```
+# Or install globally if preferred:
+npm install -g serpstat-team-management
 
-3. Set environment variable:
-```bash
+# Set your API key:
 export SERPSTAT_API_KEY="your-api-key"
-```
 
 ## Configuration
 

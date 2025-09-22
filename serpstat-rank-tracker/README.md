@@ -18,9 +18,14 @@ This MCP server provides 6 tools for rank tracking and SEO analysis:
 
 ## Installation
 
-```bash
-npm install
-```
+# No installation required! Run directly with npx:
+npx serpstat-rank-tracker
+
+# Or install globally if preferred:
+npm install -g serpstat-rank-tracker
+
+# Set your API key:
+export SERPSTAT_TOKEN="your-api-token"
 
 ## Usage
 

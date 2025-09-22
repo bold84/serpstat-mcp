@@ -121,10 +121,18 @@ MCP server for Serpstat keyword analysis with 12 different analysis methods.
 - Data export capabilities
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-keyword-analysis
-npm install
-npm run build
+npx serpstat-keyword-analysis
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-keyword-analysis
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -155,10 +163,18 @@ MCP server for Serpstat domain analysis with 15 different analysis methods.
 - Data export capabilities
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-domain-analysis
-npm install
-npm run build
+npx serpstat-domain-analysis
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-domain-analysis
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -190,10 +206,18 @@ MCP server for Serpstat project management with 3 different project operations.
 - Credit consumption tracking for project operations
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-project-management
-npm install
-npm run build
+npx serpstat-project-management
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-project-management
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -230,10 +254,18 @@ MCP server for managing Serpstat team members.
 - Search and pagination support
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-team-management
-npm install
-npm run build
+npx serpstat-team-management
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-team-management
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -264,10 +296,18 @@ MCP server for Serpstat URL analysis with 4 different analysis methods.
 - Advanced filtering and pagination support
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-url-analysis
-npm install
-npm run build
+npx serpstat-url-analysis
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-url-analysis
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -304,10 +344,18 @@ MCP server for Serpstat backlinks analysis with 21 different analysis methods.
 - Advanced sorting and pagination (up to 1000 results per page)
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-backlinks
-npm install
-npm run build
+npx serpstat-backlinks
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-backlinks
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -341,10 +389,18 @@ MCP server for Serpstat site audit with 15 different analysis methods.
 - Audit project management and monitoring
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-audit
-npm install
-npm run build
+npx serpstat-audit
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-audit
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -377,10 +433,18 @@ MCP server for Serpstat rank tracking with 6 different analysis methods.
 - No API credits consumed for any operations
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-rank-tracker
-npm install
-npm run build
+npx serpstat-rank-tracker
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-rank-tracker
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -411,11 +475,7 @@ Shared library providing common functionality for all MCP servers.
 - Credit usage tracking
 
 **Installation:**
-```bash
-cd serpstat-shared
-npm install
-npm run build
-```
+This is a shared library, not a standalone MCP server. It's automatically included when using other Serpstat MCP servers.
 
 ## Requirements
 

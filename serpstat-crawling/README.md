@@ -18,9 +18,14 @@ This MCP server provides 6 tools for SERP crawling and task management:
 
 ## Installation
 
-```bash
-npm install
-```
+# No installation required! Run directly with npx:
+npx serpstat-crawling
+
+# Or install globally if preferred:
+npm install -g serpstat-crawling
+
+# Set your API key:
+export SERPSTAT_TOKEN="your-api-token"
 
 ## Usage
 

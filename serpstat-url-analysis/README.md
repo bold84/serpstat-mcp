@@ -32,19 +32,14 @@ A comprehensive Model Context Protocol (MCP) server for interacting with the Ser
 - Model Context Protocol compatible client
 
 ### Setup
-```bash
-# Navigate to the project directory
-cd serpstat-url-analysis
+# No installation required! Run directly with npx:
+npx serpstat-url-analysis
 
-# Install dependencies
-npm install
+# Or install globally if preferred:
+npm install -g serpstat-url-analysis
 
-# Build the project
-npm run build
-
-# Set your API key
+# Set your API key:
 export SERPSTAT_API_KEY="your-serpstat-api-key"
-```
 
 ## Usage
 

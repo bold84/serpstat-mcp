@@ -30,25 +30,14 @@ This MCP server provides access to the complete Serpstat Site Audit API, includi
 
 ## Installation
 
-1. Navigate to the project directory:
-```bash
-cd serpstat-audit
-```
+# No installation required! Run directly with npx:
+npx serpstat-audit
 
-2. Install dependencies:
-```bash
-npm install
-```
+# Or install globally if preferred:
+npm install -g serpstat-audit
 
-3. Build the project:
-```bash
-npm run build
-```
-
-4. Set up your Serpstat API key:
-```bash
+# Set your API key:
 export SERPSTAT_API_KEY="your-serpstat-api-key"
-```
 
 ## Configuration
 

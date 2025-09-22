@@ -15,12 +15,14 @@ A comprehensive Model Context Protocol (MCP) server for interacting with the Ser
 
 ## Installation
 
-```bash
-cd serpstat-keyword-analysis
-npm install
-npm run build
+# No installation required! Run directly with npx:
+npx serpstat-keyword-analysis
+
+# Or install globally if preferred:
+npm install -g serpstat-keyword-analysis
+
+# Set your API key:
 export SERPSTAT_API_KEY="your-api-key"
-```
 
 ## Usage
 
