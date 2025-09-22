@@ -31,8 +31,8 @@ Add to your MCP client configuration:
 {
   "mcpServers": {
     "serpstat-rank-tracker": {
-      "command": "node",
-      "args": ["/path/to/serpstat-rank-tracker/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-rank-tracker"],
       "env": {
         "SERPSTAT_TOKEN": "your-api-token"
       }

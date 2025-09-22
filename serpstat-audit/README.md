@@ -60,8 +60,8 @@ Configure the server in your MCP client settings:
 {
   "mcpServers": {
     "serpstat-audit": {
-      "command": "node",
-      "args": ["/path/to/serpstat-audit/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-audit"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

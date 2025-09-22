@@ -69,8 +69,8 @@ Configure the server in your MCP client settings:
 {
   "mcpServers": {
     "serpstat-backlinks": {
-      "command": "node",
-      "args": ["/path/to/serpstat-backlinks/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-backlinks"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

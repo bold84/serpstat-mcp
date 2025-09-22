@@ -26,8 +26,8 @@ Add to your MCP settings:
 {
   "mcpServers": {
     "serpstat-domain-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-domain-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-domain-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

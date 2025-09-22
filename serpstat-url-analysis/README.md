@@ -55,8 +55,8 @@ Add the server to your MCP settings:
 {
   "mcpServers": {
     "serpstat-url-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-url-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-url-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

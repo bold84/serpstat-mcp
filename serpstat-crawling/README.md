@@ -31,8 +31,8 @@ Add to your MCP client configuration:
 {
   "mcpServers": {
     "serpstat-crawling": {
-      "command": "node",
-      "args": ["/path/to/serpstat-crawling/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-crawling"],
       "env": {
         "SERPSTAT_TOKEN": "your-api-token"
       }

@@ -2,7 +2,6 @@
   "name": "serpstat-keyword-analysis",
   "version": "0.1.0",
   "description": "A comprehensive Model Context Protocol server for Serpstat Keyword Analysis API",
-  "private": true,
   "type": "module",
   "bin": {
     "serpstat-keyword-analysis": "./build/index.js"

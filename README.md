@@ -4,6 +4,54 @@ A collection of Model Context Protocol (MCP) servers for interacting with the Se
 
 **Available Servers:** 9 MCP servers with 84+ total analysis methods
 
+## Installation
+
+All MCP servers are now available on npm. You can run them directly with npx without installing:
+
+```bash
+# Run any server directly with npx
+npx serpstat-crawling
+npx serpstat-keyword-analysis
+npx serpstat-domain-analysis
+# etc.
+```
+
+Or install globally if preferred:
+```bash
+npm install -g serpstat-crawling serpstat-keyword-analysis serpstat-domain-analysis
+```
+
+After installation, set your API key:
+```bash
+export SERPSTAT_API_KEY="your-api-key"
+```
+
+## Usage with MCP Clients
+
+Configure in your MCP client settings (e.g., Claude Desktop):
+
+```json
+{
+  "mcpServers": {
+    "serpstat-crawling": {
+      "command": "npx",
+      "args": ["serpstat-crawling"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    },
+    "serpstat-keyword-analysis": {
+      "command": "npx",
+      "args": ["serpstat-keyword-analysis"],
+      "env": {
+        "SERPSTAT_API_KEY": "your-serpstat-api-key"
+      }
+    }
+    // Add other servers as needed
+  }
+}
+```
+
 ## Projects
 
 ### serpstat-crawling
@@ -19,10 +67,18 @@ MCP server for Serpstat SERP crawling with 6 different crawling methods.
 - Separate billing system (credits must be purchased separately)
 
 **Installation:**
+No installation required! Run directly with npx:
 ```bash
-cd serpstat-crawling
-npm install
-npm run build
+npx serpstat-crawling
+```
+
+Or install globally:
+```bash
+npm install -g serpstat-crawling
+```
+
+Set your API key:
+```bash
 export SERPSTAT_API_KEY="your-api-key"
 ```
 
@@ -32,8 +88,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-crawling": {
-      "command": "node",
-      "args": ["/path/to/serpstat-crawling/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-crawling"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

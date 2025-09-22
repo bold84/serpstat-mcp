@@ -26,8 +26,8 @@ Add to your MCP client configuration:
 {
   "mcpServers": {
     "serpstat-project-management": {
-      "command": "node",
-      "args": ["/path/to/serpstat-project-management/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-project-management"],
       "env": {
         "SERPSTAT_TOKEN": "your-api-token"
       }

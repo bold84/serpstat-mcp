@@ -4,8 +4,10 @@ A shared library providing common functionality for Serpstat MCP servers.
 
 ## Installation
 
+The package is published on npm:
+
 ```bash
-npm install
+npm install serpstat-shared
 ```
 
 ## Usage

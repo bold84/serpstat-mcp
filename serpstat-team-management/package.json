@@ -2,7 +2,6 @@
   "name": "serpstat-team-management",
   "version": "0.1.0",
   "description": "A Model Context Protocol server",
-  "private": true,
   "type": "module",
   "bin": {
     "serpstat-team-management": "./build/index.js"

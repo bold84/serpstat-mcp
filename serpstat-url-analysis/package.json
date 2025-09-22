@@ -2,7 +2,6 @@
   "name": "serpstat-url-analysis",
   "version": "0.1.0",
   "description": "A comprehensive Model Context Protocol server for Serpstat URL Analysis API",
-  "private": true,
   "type": "module",
   "bin": {
     "serpstat-url-analysis": "./build/index.js"

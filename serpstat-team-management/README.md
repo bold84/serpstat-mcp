@@ -26,8 +26,8 @@ Add to your MCP settings:
 {
   "mcpServers": {
     "serpstat-team-management": {
-      "command": "node",
-      "args": ["/path/to/serpstat-team-management/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-team-management"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

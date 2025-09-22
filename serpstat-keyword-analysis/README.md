@@ -32,8 +32,8 @@ Configure in your MCP settings:
 {
   "mcpServers": {
     "serpstat-keyword-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-keyword-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-keyword-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }

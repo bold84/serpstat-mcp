@@ -2,7 +2,6 @@
   "name": "serpstat-backlinks",
   "version": "0.1.0",
   "description": "A comprehensive Model Context Protocol server for Serpstat Backlinks API with 21 analysis methods",
-  "private": true,
   "type": "module",
   "bin": {
     "serpstat-backlinks": "./build/index.js"
