@@ -142,8 +142,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-keyword-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-keyword-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-keyword-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -184,8 +184,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-domain-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-domain-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-domain-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -227,8 +227,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-project-management": {
-      "command": "node",
-      "args": ["/path/to/serpstat-project-management/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-project-management"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -275,8 +275,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-team-management": {
-      "command": "node",
-      "args": ["/path/to/serpstat-team-management/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-team-management"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -317,8 +317,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-url-analysis": {
-      "command": "node",
-      "args": ["/path/to/serpstat-url-analysis/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-url-analysis"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -365,8 +365,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-backlinks": {
-      "command": "node",
-      "args": ["/path/to/serpstat-backlinks/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-backlinks"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -410,8 +410,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-audit": {
-      "command": "node",
-      "args": ["/path/to/serpstat-audit/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-audit"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
@@ -454,8 +454,8 @@ Configure in MCP settings:
 {
   "mcpServers": {
     "serpstat-rank-tracker": {
-      "command": "node",
-      "args": ["/path/to/serpstat-rank-tracker/build/index.js"],
+      "command": "npx",
+      "args": ["serpstat-rank-tracker"],
       "env": {
         "SERPSTAT_API_KEY": "your-serpstat-api-key"
       }
